@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "kuryrc.mfa",
+  "name": "MFA",
+  "version": "1.0.0",
+  "author": "kuryrc",
+  "description": "Search and copy TOTP codes, with a system keyring and Raycast-compatible backups",
+  "kinds": ["overlay"],
+  "keepLoaded": true,
+  "entryPoints": {"overlay": "Mfa.qml"}
+}

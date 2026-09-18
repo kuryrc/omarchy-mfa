@@ -1,0 +1,44 @@
+# Python bytecode, virtual environments, and development caches
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.tox/
+.nox/
+
+# Test and build output
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+build/
+dist/
+*.egg-info/
+artifacts/
+.ci-omarchy/
+
+# Local environment and credentials; a sanitized example may be tracked
+.env
+.env.*
+!.env.example
+
+# Local OTP exports and Git history backups
+/backups/
+/Backups/
+omarchy-mfa-*.txt
+*.bundle
+
+# Runtime logs and editor/OS state
+*.log
+*.log.*
+.qmlls.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
