@@ -9,9 +9,22 @@
 [固定版本源码](https://github.com/raycast/extensions/tree/3c654737b0d566d3103fcdf72221a9f34664bdf2/extensions/two-factor-authentication-code-generator)。
 界面使用 Omarchy 原生组件和主题；这是独立移植项目。
 
-## 安装与打开
+## 界面预览
 
-仓库发布后可运行：
+以下图片使用真实界面，在隔离的测试环境中以虚构账户和固定演示验证码生成。
+没有使用个人账户、真实密钥、钥匙环内容或桌面截图。
+
+![账户搜索、演示验证码与倒计时](preview.png)
+
+| 操作菜单 | 添加账户 |
+| --- | --- |
+| ![支持键盘操作的动作菜单](docs/previews/actions.png) | ![添加虚构账户，公开测试密钥以圆点隐藏](docs/previews/add-account.png) |
+
+| 恢复备份预览 | 简体中文设置 |
+| --- | --- |
+| ![选择有效演示条目，查看同名账户与错误原因](docs/previews/restore-preview.png) | ![简体中文下的语言与默认操作设置](docs/previews/settings-zh.png) |
+
+## 安装与打开
 
 ```sh
 omarchy plugin add https://github.com/kuryrc/omarchy-mfa.git --enable

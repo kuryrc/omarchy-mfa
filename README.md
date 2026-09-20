@@ -11,6 +11,22 @@ Reference: [Raycast Store](https://www.raycast.com/cjdenio/two-factor-authentica
 and [upstream source at 3c654737b0d566d3103fcdf72221a9f34664bdf2](https://github.com/raycast/extensions/tree/3c654737b0d566d3103fcdf72221a9f34664bdf2/extensions/two-factor-authentication-code-generator).
 The interface uses Omarchy's native shell components and theme tokens.
 
+## Preview
+
+These screenshots show the real interface with fictional accounts and fixed demo
+codes, rendered in an isolated test environment. No personal accounts, secrets,
+keyring contents, or desktop screenshots are used.
+
+![Account search with demonstration codes and countdowns](preview.png)
+
+| Actions | Add account |
+| --- | --- |
+| ![Keyboard-driven action menu](docs/previews/actions.png) | ![Add a fictional account with a masked public test secret](docs/previews/add-account.png) |
+
+| Restore preview | Simplified Chinese settings |
+| --- | --- |
+| ![Select valid demo entries and review duplicates and errors](docs/previews/restore-preview.png) | ![Language and default action settings in Simplified Chinese](docs/previews/settings-zh.png) |
+
 ## Features
 
 - Keyboard-driven search, codes, countdowns, and recently used ordering.
@@ -43,8 +59,6 @@ plugin. A missing or locked keyring produces an actionable message. Use the
 installed by Omarchy's plugin installer.
 
 ## Install and open
-
-Once the repository is published:
 
 ```sh
 omarchy plugin add https://github.com/kuryrc/omarchy-mfa.git --enable

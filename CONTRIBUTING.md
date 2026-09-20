@@ -78,6 +78,29 @@ Offscreen tests do not prove compositor focus behavior: run the optional live
 backup test and a dummy-account paste smoke test on Wayland when changing those
 integration paths. Never use a real OTP secret in a test or log.
 
+## Documentation screenshots
+
+Regenerate the five README previews with the same local UI dependencies:
+
+```sh
+/usr/bin/python3 -B tests/render_previews.py
+```
+
+The renderer uses the real QML card, a fixed Tokyo Night palette, and synthetic
+fixtures in `tests/fixtures/previews.qml` and `previews_backend.py`. Accounts use
+`example.com`, codes and countdowns are fixed, and the add form uses a public
+RFC 6238 test secret. The fixture backend supports only list and preview responses;
+it never loads the production backend or reads or writes account data.
+
+Quickshell runs offscreen with a temporary home, XDG directories, a private D-Bus
+session, and an explicit environment that excludes the desktop session. Images
+capture only the QML card. Do not substitute personal accounts or capture the
+live MFA window. Inspect the resulting PNGs before committing them.
+
+The account list is saved as root `preview.png` for the README and plugin market;
+the other four images are saved under `docs/previews/`. Both READMEs share these
+files. Regenerate them when the corresponding interface changes.
+
 ## Change discipline
 
 - Default to one complete commit per task. Squash intermediate corrections,
