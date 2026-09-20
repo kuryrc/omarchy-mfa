@@ -6,32 +6,42 @@ permissions:
 
 jobs:
   python:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
-        python-version: ["3.12", "3.14"]
+        python-version: ["3.12.14", "3.14.7"]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, tested with v1.0.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5, tested with v1.0.0
         with:
           python-version: ${{ matrix.python-version }}
           cache: pip
-          cache-dependency-path: requirements-dev.txt
-      - run: python -m pip install -r requirements-dev.txt
+          cache-dependency-path: requirements-dev.lock
+      - name: Install hash-locked Python tools
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r requirements-dev.lock
       - run: ruff check .
       - run: ruff format --check .
       - run: mypy
       - run: python -B -m unittest discover -s tests -v
 
   qml:
-    runs-on: ubuntu-latest
-    container: archlinux:base
+    runs-on: ubuntu-24.04
+    # Exact base image used by the passing v1.0.0 CI run.
+    container: archlinux@sha256:63c7b061c0c001cb7ce4f8d11b63d351c23e7f97121bc5c8bd5d9f431e615d7d
     steps:
-      - name: Install Qt and Quickshell
-        run: pacman -Syu --noconfirm --needed git python quickshell qt6-declarative qt6-svg ttf-dejavu dbus
-      - uses: actions/checkout@v4
+      - name: Install Qt and Quickshell from the reviewed Arch snapshot
+        run: |
+          echo 'Server = https://archive.archlinux.org/repos/2026/09/18/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+          pacman -Syyuu --noconfirm --needed git python quickshell qt6-declarative qt6-svg ttf-dejavu dbus
+          pacman -Q git python quickshell qt6-base qt6-declarative qt6-svg ttf-dejavu dbus
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, tested with v1.0.0
+        with:
+          persist-credentials: false
       - name: Fetch the tested Omarchy UI components
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4, tested with v1.0.0
         with:
           repository: basecamp/omarchy
           ref: 0534987009061cbe2dacdde4ad564092ab698d12 # v4.0.3
